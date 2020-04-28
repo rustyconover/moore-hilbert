@@ -3,6 +3,10 @@ name = "moore-hilbert"
 version = "0.1.0"
 authors = ["Rusty Conover <rusty@conover.me>"]
 edition = "2018"
+description = "A safe Rust binding to Doug Moore's Fast Hilbert Curve Generation, Sorting, and Range Queries"
+keywords = ["hilbert", "hilbert-curve"]
+repository = "https://github.com/rustyconover/moore-hilbert.git"
+
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
