@@ -215,9 +215,9 @@ pub fn coordinates_compare(
 /// ];
 ///
 ///
-/// assert_eq!(moore_hilbert::float_coordinates_compare(&coords[0], &coords[0]), Ordering::Equal);
-/// assert_eq!(moore_hilbert::float_coordinates_compare(&coords[0], &coords[1]), Ordering::Greater);
-/// assert_eq!(moore_hilbert::float_coordinates_compare(&coords[1], &coords[0]), Ordering::Less);
+/// assert_eq!(moore_hilbert::coordinates_float_compare(&coords[0], &coords[0]), Ordering::Equal);
+/// assert_eq!(moore_hilbert::coordinates_float_compare(&coords[0], &coords[1]), Ordering::Greater);
+/// assert_eq!(moore_hilbert::coordinates_float_compare(&coords[1], &coords[0]), Ordering::Less);
 /// ```
 pub fn coordinates_float_compare(coord1: &[f64], coord2: &[f64]) -> Ordering {
     if coord1.len() != coord2.len() {
