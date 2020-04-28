@@ -42,7 +42,8 @@ pub type BitsPerDimensionType = usize;
 /// The number of bits in each byte
 const BITS_PER_BYTE: usize = 8;
 
-/// Convert coordinates of a point on a Hilbert curve to its index.
+/// Convert coordinates of a point on a Hilbert curve to its index
+///
 /// # Arguments
 ///
 /// * `bits_per_dimension` - Number of bits/coordinate.
@@ -80,7 +81,7 @@ pub fn coordinates_to_index(
     }
 }
 
-/// Convert an index into a Hilbert curve to a set of coordinates.
+/// Convert an index into a Hilbert curve to a set of coordinates
 ///
 /// # Arguments
 ///
@@ -199,8 +200,8 @@ pub fn coordinates_compare(
 ///
 /// # Arguments
 ///
-/// * `coord1` - Array of nDims doubles
-/// * `coord2` - Array of nDims doubles
+/// * `coord1` - Slice of coordinates using floats
+/// * `coord2` - Slice of coordinates using floats
 ///
 /// # Returns
 ///
@@ -214,11 +215,11 @@ pub fn coordinates_compare(
 /// ];
 ///
 ///
-/// assert_eq!(moore_hilbert::hilbert_ieee_cmp(&coords[0], &coords[0]), Ordering::Equal);
-/// assert_eq!(moore_hilbert::hilbert_ieee_cmp(&coords[0], &coords[1]), Ordering::Greater);
-/// assert_eq!(moore_hilbert::hilbert_ieee_cmp(&coords[1], &coords[0]), Ordering::Less);
+/// assert_eq!(moore_hilbert::float_coordinates_compare(&coords[0], &coords[0]), Ordering::Equal);
+/// assert_eq!(moore_hilbert::float_coordinates_compare(&coords[0], &coords[1]), Ordering::Greater);
+/// assert_eq!(moore_hilbert::float_coordinates_compare(&coords[1], &coords[0]), Ordering::Less);
 /// ```
-pub fn hilbert_ieee_cmp(coord1: &[f64], coord2: &[f64]) -> Ordering {
+pub fn coordinates_float_compare(coord1: &[f64], coord2: &[f64]) -> Ordering {
     if coord1.len() != coord2.len() {
         panic!("Coordinates supplied are not equal in length");
     }
@@ -304,7 +305,7 @@ pub fn coordinates_increment(
 ///
 /// `bits_per_dimension` <= (sizeof `HilbertIndex`) * (`bits_per_byte`)
 ///
-pub fn hilbert_box_vtx(
+pub fn box_vertex(
     bits_per_dimension: BitsPerDimensionType,
     find_min: bool,
     coord1: &mut [HilbertCoordinate],
@@ -347,7 +348,7 @@ pub fn hilbert_box_vtx(
 ///
 /// `bits_per_dimension` <= (sizeof `HilbertIndex`) * (`bits_per_byte`)
 ///
-pub fn hilbert_ieee_box_vtx(find_min: bool, coord1: &mut [f64], coord2: &mut [f64]) -> usize {
+pub fn box_float_vertex(find_min: bool, coord1: &mut [f64], coord2: &mut [f64]) -> usize {
     if coord1.len() != coord2.len() {
         panic!("Coordinates supplied are not equal in length");
     }
@@ -453,7 +454,7 @@ pub fn box_point(
 ///
 /// `bits_per_dimension` <= (sizeof `HilbertIndex`) * (`bits_per_byte`)
 ///
-pub fn hilbert_ieee_box_pt(find_min: bool, coord1: &mut [f64], coord2: &mut [f64]) -> usize {
+pub fn box_point_float(find_min: bool, coord1: &mut [f64], coord2: &mut [f64]) -> usize {
     if coord1.len() != coord2.len() {
         panic!("Coordinates supplied are not equal in length");
     }
@@ -488,7 +489,7 @@ pub fn hilbert_ieee_box_pt(find_min: bool, coord1: &mut [f64], coord2: &mut [f64
 ///
 /// `bits_per_dimension` <= (sizeof `HilbertIndex`) * (`bits_per_byte`)
 ///
-pub fn next_point_in_box(
+pub fn box_next_point(
     bits_per_dimension: BitsPerDimensionType,
     find_prev: bool,
     coord1: &mut [HilbertCoordinate],
